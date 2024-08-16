@@ -3,7 +3,6 @@ package alper;
 
 import alper.FutbolApp.Databases.FutbolcuDB;
 import alper.FutbolApp.Databases.LigDB;
-import alper.FutbolApp.Databases.MenajerDB;
 import alper.FutbolApp.Databases.TakimDB;
 import alper.FutbolApp.modules.TakimModule;
 
