@@ -7,6 +7,8 @@ import alper.FutbolApp.Databases.MenajerDB;
 import alper.FutbolApp.Databases.TakimDB;
 import alper.FutbolApp.modules.TakimModule;
 
+import java.util.Scanner;
+
 
 public class Test {
 	private static final FutbolcuDB futbolcuDB = new FutbolcuDB();
@@ -27,14 +29,25 @@ public class Test {
 //		FileIOReader.futbolcuDosyasiniOku(futbolcuDB);
 //		futbolcuDB.findAll().forEach(System.out::println);
 //
-		starApplication();
+		startApplication();
 	}
-	
-	public static void starApplication(){
-		int opt =0;
-		do {
-			TakimModule.takimModule(takimDB,futbolcuDB,ligDB);
-		}while (opt!=0);
-		
+
+	public static void startApplication() {
+		int opt = 1; // Başlangıçta döngüyü çalıştırmak için 1 ile başlatıyoruz.
+		while (opt != 0) {
+			// Takım modülünü çağırıyoruz
+			TakimModule.takimModule(takimDB, futbolcuDB, ligDB);
+
+			// Kullanıcıdan yeni bir seçim alıyoruz
+			opt = getUserInput(); // Kullanıcıdan yeni bir opt değeri al
+		}
 	}
+
+
+	private static int getUserInput() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Lütfen bir seçenek girin (0 çıkış, 1 devam): ");
+		return scanner.nextInt(); // Kullanıcının girdiği değeri döndürüyoruz
+	}
+
 }
