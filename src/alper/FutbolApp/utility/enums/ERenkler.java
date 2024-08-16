@@ -1,0 +1,17 @@
+package alper.FutbolApp.utility.enums;
+
+public enum ERenkler {
+	KIRMIZI_SARI,
+	SARI_LACIVERT,
+	SİYAH_BEYAZ,
+	BORDO_MAVİ,
+	ÇİFT_KIRMIZI,
+	TURUNCU_LACIVERT,
+	ŞERİTLİ_KIRMIZI,
+	YEŞİL_BEYAZ,
+	KIRMIZI_BEYAZ,
+	YEŞİL_MAVİ,
+	SİYAH_KIRMIZI,
+	KIRMIZI_SIYAH,
+	YEŞİL_SIYAH;
+}
