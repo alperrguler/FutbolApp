@@ -14,7 +14,7 @@ public class Test {
 	private static final FutbolcuDB futbolcuDB = new FutbolcuDB();
 	private static final TakimDB takimDB=new TakimDB();
 	private static final LigDB ligDB = new LigDB();
-	private static final MenajerDB menajerDB=new MenajerDB();
+	//private static final MenajerDB menajerDB=new MenajerDB();
 	
 	public static void main(String[] args) {
 	
