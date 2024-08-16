@@ -6,7 +6,7 @@ import alper.FutbolApp.Databases.LigDB;
 import alper.FutbolApp.Databases.MenajerDB;
 import alper.FutbolApp.Databases.TakimDB;
 import alper.FutbolApp.modules.TakimModule;
-import alper.FutbolApp.utility.FileIOReader;
+
 
 public class Test {
 	private static FutbolcuDB futbolcuDB = new FutbolcuDB();
