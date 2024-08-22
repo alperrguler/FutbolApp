@@ -1,10 +1,9 @@
 package alper.FutbolApp.utility;
 
-
 import alper.FutbolApp.Databases.FutbolcuDB;
 import alper.FutbolApp.Databases.LigDB;
-import alper.FutbolApp.Databases.MenajerDB;
 import alper.FutbolApp.Databases.TakimDB;
+import alper.FutbolApp.Databases.MenajerDB;
 
 import java.io.File;
 import java.io.FileOutputStream;

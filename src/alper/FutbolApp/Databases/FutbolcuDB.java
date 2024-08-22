@@ -1,5 +1,6 @@
 package alper.FutbolApp.Databases;
 
+
 import alper.FutbolApp.entities.Futbolcu;
 import alper.FutbolApp.utility.DataBaseManager;
 import alper.FutbolApp.utility.enums.EMevki;
@@ -38,5 +39,11 @@ public class FutbolcuDB extends DataBaseManager<Futbolcu> {
 		return veriListesi.stream()
 		                  .filter(futbolcu -> futbolcu.getTakimID().equals(takimId))
 		                  .collect(Collectors.toList());
+	}
+	
+	public List<Futbolcu> takimIdyeGoreFutbolculariListele(int takimId) {
+		return veriListesi.stream()
+				.filter(futbolcu -> futbolcu.getTakimID().equals(takimId))
+				.collect(Collectors.toList());
 	}
 }

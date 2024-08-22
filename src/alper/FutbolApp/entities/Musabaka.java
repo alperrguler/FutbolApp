@@ -2,22 +2,22 @@ package alper.FutbolApp.entities;
 
 import alper.FutbolApp.Databases.MusabakaDB;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Musabaka extends BaseEntity {
 	static int musabakaIDCOunt=0;
-	private Takim evSahibi;
-	private Takim misafirTakim;
+	private String  evSahibi;
+	private String  misafirTakim;
 	private String stadyum;
 	private int evSahibiSkor;
 	private int misafirTakimSkor;
 	private String hakemIsmi;
-	private LocalDateTime musabakaTarihi; //localdate time yap
+	private LocalDate musabakaTarihi; //localdate time yap
 	//sonradan stadyumID eklenecek
-	//MUSABAKA_KADRO entitysi yapılacak sonra
 	
-	public Musabaka(Takim evSahibi, Takim misafirTakim, String stadyum, int evSahibiSkor, int misafirTakimSkor,
-	                String hakemIsmi, LocalDateTime musabakaTarihi, MusabakaDB musabakaDB) {
+	
+	public Musabaka(String  evSahibi, String  misafirTakim, String stadyum, int evSahibiSkor, int misafirTakimSkor,
+	                String hakemIsmi, LocalDate musabakaTarihi, MusabakaDB musabakaDB) {
 		this.evSahibi = evSahibi;
 		this.misafirTakim = misafirTakim;
 		this.stadyum = stadyum;
@@ -28,6 +28,12 @@ public class Musabaka extends BaseEntity {
 		musabakaDB.save(this);
 	}
 	
+	public Musabaka(String evSahibi, String misafirTakim) {
+		this.evSahibi=evSahibi;
+		this.misafirTakim=misafirTakim;
+	}
+	
+	
 	public static int getMusabakaIDCOunt() {
 		return musabakaIDCOunt;
 	}
@@ -36,19 +42,19 @@ public class Musabaka extends BaseEntity {
 		Musabaka.musabakaIDCOunt = musabakaIDCOunt;
 	}
 	
-	public Takim getEvSahibi() {
+	public String getEvSahibi() {
 		return evSahibi;
 	}
 	
-	public void setEvSahibi(Takim evSahibi) {
+	public void setEvSahibi(String  evSahibi) {
 		this.evSahibi = evSahibi;
 	}
 	
-	public Takim getMisafirTakim() {
+	public String getMisafirTakim() {
 		return misafirTakim;
 	}
 	
-	public void setMisafirTakim(Takim misafirTakim) {
+	public void setMisafirTakim(String misafirTakim) {
 		this.misafirTakim = misafirTakim;
 	}
 	
@@ -84,14 +90,19 @@ public class Musabaka extends BaseEntity {
 		this.hakemIsmi = hakemIsmi;
 	}
 	
-	public LocalDateTime getMusabakaTarihi() {
+	public LocalDate getMusabakaTarihi() {
 		return musabakaTarihi;
 	}
 	
-	public void setMusabakaTarihi(LocalDateTime musabakaTarihi) {
+	public void setMusabakaTarihi(LocalDate musabakaTarihi) {
 		this.musabakaTarihi = musabakaTarihi;
 	}
 	
+
+	public String toStringFikstur() {
+		return "Musabaka{" + "evSahibi=" + getEvSahibi()+" VS " + ", misafirTakim=" + getMisafirTakim() + ", " +
+				"musabakaTarihi=" + getMusabakaTarihi() +  '}';
+	}
 	@Override
 	public String toString() {
 		return "Musabaka{" + "evSahibi=" + getEvSahibi() + ", misafirTakim=" + getMisafirTakim() + ", stadyum='" + getStadyum() + '\'' + ", evSahibiSkor=" + getEvSahibiSkor() + ", misafirTakimSkor=" + getMisafirTakimSkor() + ", hakemIsmi='" + getHakemIsmi() + '\'' + ", musabakaTarihi=" + getMusabakaTarihi() + ", id=" + getId() + '}';

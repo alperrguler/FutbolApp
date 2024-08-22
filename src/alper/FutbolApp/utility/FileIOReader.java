@@ -10,10 +10,7 @@ import alper.FutbolApp.entities.Lig;
 import alper.FutbolApp.entities.Menajer;
 import alper.FutbolApp.entities.Takim;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.List;
 
 public class FileIOReader {

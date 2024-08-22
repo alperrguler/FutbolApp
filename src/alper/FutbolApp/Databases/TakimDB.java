@@ -1,5 +1,6 @@
 package alper.FutbolApp.Databases;
 
+
 import alper.FutbolApp.entities.Takim;
 import alper.FutbolApp.utility.DataBaseManager;
 import alper.FutbolApp.utility.enums.ERenkler;
@@ -52,16 +53,6 @@ public class TakimDB extends DataBaseManager<Takim> {
 		                                     .toList();
 		bulunanList.stream().map(takim -> takim.getId() + " : " + takim.getTakimIsim());
 		
-//		System.out.println("------- Aranan takim "+ kulupIsmi + " -------");
-//		if (bulunanList.isEmpty()){
-//			System.out.println("Takim Bulunamadi!!");
-//
-//		}
-//		else{
-//			bulunanList.stream().map(takim -> takim.getId() + " : " + takim.getTakimIsim())
-//			           .forEach(System.out::println);
-//		}
-//		System.out.println("-----------------------------------");
 		return bulunanList;
 	}
 	public void takimlarIsimIdList() {
@@ -70,5 +61,11 @@ public class TakimDB extends DataBaseManager<Takim> {
 		           .collect(Collectors.toList())
 		           .forEach(System.out::println);
 	}
-
+	public void menajerinTakimIdsineGoreTakimBul(int takimid){
+		Optional<Takim> bulunantakim=veriListesi.stream()
+				.filter(takim -> takim.getId()==takimid)
+				.findFirst();
+		System.out.println(bulunantakim.get());
+	}
+	
 }

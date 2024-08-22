@@ -1,5 +1,6 @@
 package alper.FutbolApp.entities;
 
+
 import alper.FutbolApp.Databases.FutbolcuDB;
 import alper.FutbolApp.utility.FileIOWriter;
 import alper.FutbolApp.utility.enums.EMevki;
@@ -17,7 +18,7 @@ public class Futbolcu extends BaseEntity {
 	private Integer takimID;
 	
 	public  Futbolcu(String isim, String soyIsim, LocalDate dogumTarihi, Long bonservisBedeli, EMevki mevki,
-					 FutbolcuDB futbolcuDB) {
+	                FutbolcuDB futbolcuDB) {
 		this.isim = isim;
 		this.soyIsim = soyIsim;
 		this.dogumTarihi = dogumTarihi;
@@ -90,6 +91,10 @@ public class Futbolcu extends BaseEntity {
 		this.takimID = takimID;
 	}
 	
+	
+	public String toStringOzet() {
+		return "Futbolcu{" + "id=" + getId() + ", isim='" + getIsim() + '\'' + ", soyIsim='" + getSoyIsim() + '\'' + '}';
+	}
 	@Override
 	public String toString() {
 		return "Futbolcu{" + "isim='" + getIsim() + '\'' + ", soyIsim='" + getSoyIsim() + '\'' + ", dogumTarihi=" + getDogumTarihi() + ", bonservisBedeli='" + getBonservisBedeli() + '\'' + ", mevki=" + getMevki() + ", takimID=" + getTakimID() + ", id=" + getId() + '}';

@@ -1,8 +1,8 @@
 package alper.FutbolApp.modules;
 
+
 import alper.FutbolApp.Databases.FutbolcuDB;
 import alper.FutbolApp.Databases.LigDB;
-
 import alper.FutbolApp.Databases.TakimDB;
 import alper.FutbolApp.entities.Futbolcu;
 import alper.FutbolApp.entities.Takim;
@@ -10,6 +10,7 @@ import alper.FutbolApp.entities.Takim;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+
 
 /**
  * Kulüp modulü; Menüde; 1- Isme Gore Kulup Ara, 2- Kulupleri Listele
@@ -45,7 +46,6 @@ public class TakimModule {
 			case 1: {
 				System.out.println("Lütfen bir takım ismi giriniz: ");
 				String arananTakim = scanner.nextLine();
-
 				List<Takim> takimList = takimDB.girilenMetniIcerenleriListele(arananTakim);
 				
 				if (takimList.isEmpty()) {

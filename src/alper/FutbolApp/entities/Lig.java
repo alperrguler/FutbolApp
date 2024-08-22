@@ -1,13 +1,14 @@
 package alper.FutbolApp.entities;
 
-
 import alper.FutbolApp.Databases.LigDB;
 import alper.FutbolApp.utility.FileIOWriter;
 import alper.FutbolApp.utility.enums.EBolge;
 import alper.FutbolApp.utility.enums.EKume;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Lig extends BaseEntity {
 	static int ligIDCount = 0;
@@ -18,18 +19,23 @@ public class Lig extends BaseEntity {
 	private String sezon;
 	private EKume kume;
 	private EBolge bolge;
+	private LocalDate baslangicTarihi;
+	
 	
 	
 	public Lig(LigDB ligDB) {
 		this.id=++ligIDCount;
 		takimIDList=new ArrayList<>();
 		ligDB.save(this);
+		FileIOWriter.ligleriDosyayaYazdir(ligDB);
+		
 	}
 	
-	public Lig(String ligIsmi, List<Integer> takimIDList,LigDB ligDB) {
+	public Lig(String ligIsmi, List<Integer> takimIDList,LigDB ligDB,LocalDate baslangicTarihi) {
 		this.ligIsmi = ligIsmi;
 		this.takimIDList = takimIDList;
 		this.id=++ligIDCount;
+		this.baslangicTarihi=baslangicTarihi;
 		takimIDList=new ArrayList<>();
 		ligDB.save(this);
 		FileIOWriter.ligleriDosyayaYazdir(ligDB);
@@ -43,16 +49,25 @@ public class Lig extends BaseEntity {
 		FileIOWriter.ligleriDosyayaYazdir(ligDB);
 	}
 	
-	public Lig(String ligIsmi, String sezon, EKume kume, EBolge bolge, LigDB ligDB) {
+	public Lig(String ligIsmi, String sezon, EKume kume, EBolge bolge, LigDB ligDB,LocalDate baslangicTarihi) {
 		this.ligIsmi = ligIsmi;
 		this.sezon = sezon;
 		this.kume = kume;
 		this.bolge = bolge;
 		this.id=++ligIDCount;
+		this.baslangicTarihi=baslangicTarihi;
 		takimIDList=new ArrayList<>();
 		ligDB.save(this);
 		FileIOWriter.ligleriDosyayaYazdir(ligDB);
 		
+	}
+	
+	public LocalDate getBaslangicTarihi() {
+		return baslangicTarihi;
+	}
+	
+	public void setBaslangicTarihi(LocalDate baslangicTarihi) {
+		this.baslangicTarihi = baslangicTarihi;
 	}
 	
 	public static int getLigIDCount() {
@@ -105,6 +120,6 @@ public class Lig extends BaseEntity {
 	
 	@Override
 	public String toString() {
-		return "Lig{" + "ligIsmi='" + getLigIsmi() + '\'' + ", takimIDList=" + getTakimIDList() + ", sezon='" + getSezon() + '\'' + ", kume=" + getKume() + ", bolge=" + getBolge() + ", id=" + getId() + '}';
+		return "Lig{" + "baslangicTarihi=" + getBaslangicTarihi() + ", bolge=" + getBolge() + ", kume=" + getKume() + ", ligIsmi='" + getLigIsmi() + '\'' + ", sezon='" + getSezon() + '\'' + ", takimIDList=" + getTakimIDList() + ", id=" + getId() + '}';
 	}
 }
