@@ -1,6 +1,5 @@
 package alper.FutbolApp.Databases;
 
-
 import alper.FutbolApp.entities.Lig;
 import alper.FutbolApp.utility.DataBaseManager;
 

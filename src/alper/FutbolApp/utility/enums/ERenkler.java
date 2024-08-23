@@ -1,5 +1,6 @@
 package alper.FutbolApp.utility.enums;
 
+
 public enum ERenkler {
 	KIRMIZI_SARI,
 	SARI_LACIVERT,

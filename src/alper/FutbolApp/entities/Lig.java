@@ -1,6 +1,9 @@
 package alper.FutbolApp.entities;
 
+
 import alper.FutbolApp.Databases.LigDB;
+
+import alper.FutbolApp.model.DatabaseModel;
 import alper.FutbolApp.utility.FileIOWriter;
 import alper.FutbolApp.utility.enums.EBolge;
 import alper.FutbolApp.utility.enums.EKume;
@@ -12,6 +15,7 @@ import java.util.List;
 
 public class Lig extends BaseEntity {
 	static int ligIDCount = 0;
+	private  static DatabaseModel databaseModel=new DatabaseModel();
 	//TODO lig puan listesi
 	private String ligIsmi;
 	private List<Integer> takimIDList;
@@ -23,13 +27,15 @@ public class Lig extends BaseEntity {
 	
 	
 	
+	
 	public Lig(LigDB ligDB) {
 		this.id=++ligIDCount;
 		takimIDList=new ArrayList<>();
 		ligDB.save(this);
-		FileIOWriter.ligleriDosyayaYazdir(ligDB);
+//		FileIOWriter.ligleriDosyayaYazdir(ligDB);
 		
 	}
+	
 	
 	public Lig(String ligIsmi, List<Integer> takimIDList,LigDB ligDB,LocalDate baslangicTarihi) {
 		this.ligIsmi = ligIsmi;
@@ -38,7 +44,7 @@ public class Lig extends BaseEntity {
 		this.baslangicTarihi=baslangicTarihi;
 		takimIDList=new ArrayList<>();
 		ligDB.save(this);
-		FileIOWriter.ligleriDosyayaYazdir(ligDB);
+		FileIOWriter.ligleriDosyayaYazdir(databaseModel);
 	}
 	
 	public Lig(String ligIsmi, LigDB ligDB) {
@@ -46,7 +52,7 @@ public class Lig extends BaseEntity {
 		takimIDList=new ArrayList<>();
 		this.id=++ligIDCount;
 		ligDB.save(this);
-		FileIOWriter.ligleriDosyayaYazdir(ligDB);
+		FileIOWriter.ligleriDosyayaYazdir(databaseModel);
 	}
 	
 	public Lig(String ligIsmi, String sezon, EKume kume, EBolge bolge, LigDB ligDB,LocalDate baslangicTarihi) {
@@ -58,7 +64,7 @@ public class Lig extends BaseEntity {
 		this.baslangicTarihi=baslangicTarihi;
 		takimIDList=new ArrayList<>();
 		ligDB.save(this);
-		FileIOWriter.ligleriDosyayaYazdir(ligDB);
+//		FileIOWriter.ligleriDosyayaYazdir(ligDB);
 		
 	}
 	

@@ -1,12 +1,12 @@
 package alper.FutbolApp.Databases;
 
-
+import alper.FutbolApp.utility.enums.ERenkler;
 import alper.FutbolApp.entities.Takim;
 import alper.FutbolApp.utility.DataBaseManager;
-import alper.FutbolApp.utility.enums.ERenkler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -67,5 +67,20 @@ public class TakimDB extends DataBaseManager<Takim> {
 				.findFirst();
 		System.out.println(bulunantakim.get());
 	}
+	
+	public List<Integer> takimIDleriniListe(){
+		return veriListesi.stream()
+				.map(takim -> takim.getId())
+				.collect(Collectors.toList());
+		
+	}
+
+	public List<String> takimAdlarinaGoreListe(){
+		return veriListesi.stream()
+				.map(takim -> takim.getTakimIsim())
+				.collect(Collectors.toList());
+
+	}
+	
 	
 }

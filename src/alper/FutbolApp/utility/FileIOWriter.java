@@ -1,67 +1,77 @@
 package alper.FutbolApp.utility;
 
-import alper.FutbolApp.Databases.FutbolcuDB;
-import alper.FutbolApp.Databases.LigDB;
-import alper.FutbolApp.Databases.TakimDB;
-import alper.FutbolApp.Databases.MenajerDB;
+import alper.FutbolApp.Databases.*;
+import alper.FutbolApp.model.DatabaseModel;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public class FileIOWriter {
 	private static final File dosya = new File("C:\\FutbolAPPDatabase");
-	
-	public static void futbolculariDosyayaYazdir(FutbolcuDB futbolcuDB) {
+
+	public static void futbolculariDosyayaYazdir(DatabaseModel databaseModel) {
 		File outputFile = new File("C:\\FutbolAPPDatabase\\futbolcuDB.bin");
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFile))) {
-			oos.writeObject(futbolcuDB.findAll());
+			oos.writeObject(databaseModel.futbolcuDB.findAll());
 		}
-		
+
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void takimlariDosyayaYazdir(TakimDB takimDB) {
+
+	public static void takimlariDosyayaYazdir(DatabaseModel databaseModel) {
 		File outputFile = new File(dosya, "takimDB.bin");
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFile))) {
-			oos.writeObject(takimDB.findAll());
+			oos.writeObject(databaseModel.takimDB.findAll());
 		}
-		
+
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void ligleriDosyayaYazdir(LigDB ligDB){
+
+	public static void ligleriDosyayaYazdir(DatabaseModel databaseModel){
 		File outputFile =new File(dosya,"ligDB.bin");
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFile))) {
-			oos.writeObject(ligDB.findAll());
+			oos.writeObject(databaseModel.ligDB.findAll());
 		}
-		
+
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void menajerleriDosyayaYazdir(MenajerDB menajerDB){
+
+	public static void menajerleriDosyayaYazdir(DatabaseModel databaseModel){
 		File outputFile=new File(dosya,"menajerDB.bin");
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFile))) {
-			oos.writeObject(menajerDB.findAll());
+			oos.writeObject(databaseModel.menajerDB.findAll());
 		}
-		
+
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	public static void nesneleriYazdir(FutbolcuDB futbolcuDB,TakimDB takimDB,LigDB ligDB,MenajerDB menajerDB){
-		futbolculariDosyayaYazdir(futbolcuDB);
-		takimlariDosyayaYazdir(takimDB);
-		ligleriDosyayaYazdir(ligDB);
-		menajerleriDosyayaYazdir(menajerDB);
+	public static void stadyumlariDosyayaYazdir(DatabaseModel databaseModel){
+		File outputFile=new File(dosya,"stadyumDB.bin");
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFile))) {
+			oos.writeObject(databaseModel.stadyumDB.findAll());
+		}
+
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
-	
+
+
+
+	public static void nesneleriYazdir(DatabaseModel databaseModel){
+		futbolculariDosyayaYazdir(databaseModel);
+		takimlariDosyayaYazdir(databaseModel);
+		ligleriDosyayaYazdir(databaseModel);
+		menajerleriDosyayaYazdir(databaseModel);
+		stadyumlariDosyayaYazdir(databaseModel);
+
+	}
+
+
 }

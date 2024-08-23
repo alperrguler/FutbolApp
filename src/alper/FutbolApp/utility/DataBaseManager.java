@@ -1,9 +1,7 @@
 package alper.FutbolApp.utility;
 
-
-
-
 import alper.FutbolApp.entities.BaseEntity;
+
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,8 @@
 package alper.FutbolApp.Databases;
 
-
+import alper.FutbolApp.utility.enums.EMevki;
 import alper.FutbolApp.entities.Futbolcu;
 import alper.FutbolApp.utility.DataBaseManager;
-import alper.FutbolApp.utility.enums.EMevki;
 
 import java.util.List;
 import java.util.Optional;

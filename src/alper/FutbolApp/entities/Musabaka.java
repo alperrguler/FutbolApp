@@ -3,67 +3,50 @@ package alper.FutbolApp.entities;
 import alper.FutbolApp.Databases.MusabakaDB;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class Musabaka extends BaseEntity {
-	static int musabakaIDCOunt=0;
-	private String  evSahibi;
-	private String  misafirTakim;
-	private String stadyum;
+	static int musabakaIDCOunt = 0;
+	
+	private Integer evSahibiID;
+	private Integer misafirTakimID;
+	private Stadyum stadyum;
 	private int evSahibiSkor;
 	private int misafirTakimSkor;
 	private String hakemIsmi;
 	private LocalDate musabakaTarihi; //localdate time yap
+	private Integer ligID;
 	//sonradan stadyumID eklenecek
 	
 	
-	public Musabaka(String  evSahibi, String  misafirTakim, String stadyum, int evSahibiSkor, int misafirTakimSkor,
-	                String hakemIsmi, LocalDate musabakaTarihi, MusabakaDB musabakaDB) {
-		this.evSahibi = evSahibi;
-		this.misafirTakim = misafirTakim;
+	public Musabaka(Integer evSahibiID, Integer misafirTakimID, Stadyum stadyum, int evSahibiSkor, int misafirTakimSkor
+			, String hakemIsmi, LocalDate musabakaTarihi, Integer ligID, MusabakaDB musabakaDB) {
+		this.evSahibiID = evSahibiID;
+		this.misafirTakimID = misafirTakimID;
 		this.stadyum = stadyum;
 		this.evSahibiSkor = evSahibiSkor;
 		this.misafirTakimSkor = misafirTakimSkor;
 		this.hakemIsmi = hakemIsmi;
 		this.musabakaTarihi = musabakaTarihi;
+		this.ligID = ligID;
 		musabakaDB.save(this);
 	}
 	
-	public Musabaka(String evSahibi, String misafirTakim) {
-		this.evSahibi=evSahibi;
-		this.misafirTakim=misafirTakim;
+	public Musabaka(Integer evSahibiID, Integer misafirTakimID) {
+		this.evSahibiID = evSahibiID;
+		this.misafirTakimID = misafirTakimID;
 	}
 	
+
 	
-	public static int getMusabakaIDCOunt() {
-		return musabakaIDCOunt;
+	
+	public Integer getEvSahibiID() {
+		return evSahibiID;
 	}
 	
-	public static void setMusabakaIDCOunt(int musabakaIDCOunt) {
-		Musabaka.musabakaIDCOunt = musabakaIDCOunt;
-	}
-	
-	public String getEvSahibi() {
-		return evSahibi;
-	}
-	
-	public void setEvSahibi(String  evSahibi) {
-		this.evSahibi = evSahibi;
-	}
-	
-	public String getMisafirTakim() {
-		return misafirTakim;
-	}
-	
-	public void setMisafirTakim(String misafirTakim) {
-		this.misafirTakim = misafirTakim;
-	}
-	
-	public String getStadyum() {
-		return stadyum;
-	}
-	
-	public void setStadyum(String stadyum) {
-		this.stadyum = stadyum;
+	public void setEvSahibiID(Integer evSahibiID) {
+		this.evSahibiID = evSahibiID;
 	}
 	
 	public int getEvSahibiSkor() {
@@ -74,6 +57,30 @@ public class Musabaka extends BaseEntity {
 		this.evSahibiSkor = evSahibiSkor;
 	}
 	
+	public String getHakemIsmi() {
+		return hakemIsmi;
+	}
+	
+	public void setHakemIsmi(String hakemIsmi) {
+		this.hakemIsmi = hakemIsmi;
+	}
+	
+	public Integer getLigID() {
+		return ligID;
+	}
+	
+	public void setLigID(Integer ligID) {
+		this.ligID = ligID;
+	}
+	
+	public Integer getMisafirTakimID() {
+		return misafirTakimID;
+	}
+	
+	public void setMisafirTakimID(Integer misafirTakimID) {
+		this.misafirTakimID = misafirTakimID;
+	}
+	
 	public int getMisafirTakimSkor() {
 		return misafirTakimSkor;
 	}
@@ -82,12 +89,12 @@ public class Musabaka extends BaseEntity {
 		this.misafirTakimSkor = misafirTakimSkor;
 	}
 	
-	public String getHakemIsmi() {
-		return hakemIsmi;
+	public static int getMusabakaIDCOunt() {
+		return musabakaIDCOunt;
 	}
 	
-	public void setHakemIsmi(String hakemIsmi) {
-		this.hakemIsmi = hakemIsmi;
+	public static void setMusabakaIDCOunt(int musabakaIDCOunt) {
+		Musabaka.musabakaIDCOunt = musabakaIDCOunt;
 	}
 	
 	public LocalDate getMusabakaTarihi() {
@@ -98,13 +105,22 @@ public class Musabaka extends BaseEntity {
 		this.musabakaTarihi = musabakaTarihi;
 	}
 	
-
-	public String toStringFikstur() {
-		return "Musabaka{" + "evSahibi=" + getEvSahibi()+" VS " + ", misafirTakim=" + getMisafirTakim() + ", " +
-				"musabakaTarihi=" + getMusabakaTarihi() +  '}';
+	public Stadyum getStadyum() {
+		return stadyum;
 	}
+	
+	public void setStadyum(Stadyum stadyum) {
+		this.stadyum = stadyum;
+	}
+	
+	
+	public String toStringFikstur() {
+		return "Musabaka{" + "Ev Sahibi = " + getEvSahibiID() + " VS " + "Misafir Takım = " + getMisafirTakimID() + ","
+				+ " " + "musabakaTarihi=" + getMusabakaTarihi() + '}';
+	}
+	
 	@Override
 	public String toString() {
-		return "Musabaka{" + "evSahibi=" + getEvSahibi() + ", misafirTakim=" + getMisafirTakim() + ", stadyum='" + getStadyum() + '\'' + ", evSahibiSkor=" + getEvSahibiSkor() + ", misafirTakimSkor=" + getMisafirTakimSkor() + ", hakemIsmi='" + getHakemIsmi() + '\'' + ", musabakaTarihi=" + getMusabakaTarihi() + ", id=" + getId() + '}';
+		return "Musabaka{" + "evSahibiID=" + getEvSahibiID() + ", misafirTakimID=" + getMisafirTakimID() + ", stadyum" + "='" + getStadyum() + '\'' + ", evSahibiSkor=" + getEvSahibiSkor() + ", misafirTakimSkor=" + getMisafirTakimSkor() + ", hakemIsmi='" + getHakemIsmi() + '\'' + ", musabakaTarihi=" + getMusabakaTarihi() + ", ligID=" + getLigID() + ", id=" + getId() + '}';
 	}
 }

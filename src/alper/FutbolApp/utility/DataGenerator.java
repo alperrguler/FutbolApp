@@ -1,28 +1,27 @@
 package alper.FutbolApp.utility;
 
-import alper.FutbolApp.Databases.FutbolcuDB;
-import alper.FutbolApp.Databases.LigDB;
-import alper.FutbolApp.Databases.MenajerDB;
-import alper.FutbolApp.Databases.TakimDB;
-import alper.FutbolApp.entities.Futbolcu;
-import alper.FutbolApp.entities.Lig;
-import alper.FutbolApp.entities.Menajer;
-import alper.FutbolApp.entities.Takim;
+import alper.FutbolApp.Databases.*;
+import alper.FutbolApp.entities.*;
+import alper.FutbolApp.model.DatabaseModel;
 import alper.FutbolApp.utility.enums.EBolge;
 import alper.FutbolApp.utility.enums.EKume;
 import alper.FutbolApp.utility.enums.EMevki;
 import alper.FutbolApp.utility.enums.ERenkler;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class DataGenerator {
 	
-	public static void generateData(FutbolcuDB futbolcuDB, TakimDB takimDB, LigDB ligDB, MenajerDB menajerDB) {
-		generateManajer(menajerDB);
-		generateTakimlar(takimDB, ligDB);
-		rastgeleFutbolcuUret(futbolcuDB);
+	public static void generateData(DatabaseModel databaseModel) {
+		generateManajer(databaseModel.menajerDB);
+		generateTakimlar(databaseModel.takimDB,databaseModel.ligDB);
+		rastgeleFutbolcuUret(databaseModel.futbolcuDB);
+		generateStadyum(databaseModel.stadyumDB);
 	}
 	
 	
@@ -73,26 +72,28 @@ public class DataGenerator {
 	}
 	
 	// TODO menajeri enttiy olarak yap
-	public static void generateTakimlar(TakimDB takimDB, LigDB ligDB) {
-		Takim takim1 = new Takim("Galatasaray", ERenkler.KIRMIZI_SARI, "Dursun Özbek", "1905", takimDB);
-		Takim takim2 = new Takim("Fenerbahçe", ERenkler.SARI_LACIVERT, "Ali Koç", "1907", takimDB);
-		Takim takim3 = new Takim("Beşiktaş", ERenkler.SIYAH_BEYAZ, "Ahmet Nur Çebi", "1903", takimDB);
-		Takim takim4 = new Takim("Trabzonspor", ERenkler.BORDO_MAVI, "Ahmet Ağaoğlu", "1967", takimDB);
-		Takim takim5 = new Takim("Başakşehir", ERenkler.CIFT_KIRMIZI, "Göksel Gümüşdağ", "2014", takimDB);
-		Takim takim6 = new Takim("Alanyaspor", ERenkler.TURUNCU_LACIVERT, "Hasan Çavuşoğlu", "1948", takimDB);
-		Takim takim7 = new Takim("Antalyaspor", ERenkler.SERITLI_KIRMIZI, "Aziz Çetin", "1966", takimDB);
-		Takim takim8 = new Takim("Konyaspor", ERenkler.YESIL_BEYAZ, "Hilmi Kullukçu", "1922", takimDB);
-		Takim takim9 = new Takim("Sivasspor", ERenkler.KIRMIZI_BEYAZ, "Mecnun Otyakmaz", "1967", takimDB);
-		Takim takim10 = new Takim("Çaykur Rizespor", ERenkler.YESIL_MAVI, "İbrahim Turgut", "1953", takimDB);
-		Takim takim11 = new Takim("Gaziantep FK", ERenkler.CIFT_KIRMIZI, "Adil Kürükçü", "1969", takimDB);
-		Takim takim12 = new Takim("İstanbul Başakşehir", ERenkler.CIFT_KIRMIZI, "Göksel Gümüşdağ", "2014", takimDB);
-		Takim takim13 = new Takim("MKE Ankaragücü", ERenkler.SIYAH_KIRMIZI, "Fatih Mert", "1910", takimDB);
-		Takim takim14 = new Takim("Gençlerbirliği", ERenkler.KIRMIZI_SIYAH, "Murat Cavcav", "1923", takimDB);
-		Takim takim15 = new Takim("Kayserispor", ERenkler.KIRMIZI_SIYAH, "Berna Gözbaşı", "1966", takimDB);
-		Takim takim16 = new Takim("Yeni Malatyaspor", ERenkler.YESIL_SIYAH, "Adil Gevrek", "1986", takimDB);
-		Takim takim17 = new Takim("Göztepe", ERenkler.CIFT_KIRMIZI, "Mehmet Sepil", "1925", takimDB);
-		Takim takim18 = new Takim("Denizlispor", ERenkler.CIFT_KIRMIZI, "Ali İpek", "1966", takimDB);
-		Takim takim19 = new Takim("Bodrum FK", ERenkler.YESIL_BEYAZ, "Fikret Öztürk", "1931", takimDB);
+	public static void  generateTakimlar(TakimDB takimDB, LigDB ligDB) {
+		List<Takim> takimList=new ArrayList<>();
+		Takim takim1 = new Takim("Galatasaray",1, ERenkler.KIRMIZI_SARI, "Dursun Özbek", "1905", takimDB);
+		Takim takim2 = new Takim("Fenerbahçe",2, ERenkler.SARI_LACIVERT, "Ali Koç", "1907", takimDB);
+		Takim takim3 = new Takim("Beşiktaş",3, ERenkler.SIYAH_BEYAZ, "Ahmet Nur Çebi", "1903", takimDB);
+		Takim takim4 = new Takim("Trabzonspor",4, ERenkler.BORDO_MAVI, "Ahmet Ağaoğlu", "1967", takimDB);
+		Takim takim5 = new Takim("Başakşehir",5, ERenkler.CIFT_KIRMIZI, "Göksel Gümüşdağ", "2014", takimDB);
+		Takim takim6 = new Takim("Alanyaspor",6, ERenkler.TURUNCU_LACIVERT, "Hasan Çavuşoğlu", "1948", takimDB);
+		Takim takim7 = new Takim("Antalyaspor",7, ERenkler.SERITLI_KIRMIZI, "Aziz Çetin", "1966", takimDB);
+		Takim takim8 = new Takim("Konyaspor",8, ERenkler.YESIL_BEYAZ, "Hilmi Kullukçu", "1922", takimDB);
+		Takim takim9 = new Takim("Sivasspor",9, ERenkler.KIRMIZI_BEYAZ, "Mecnun Otyakmaz", "1967", takimDB);
+		Takim takim10 = new Takim("Çaykur Rizespor",10, ERenkler.YESIL_MAVI, "İbrahim Turgut", "1953", takimDB);
+		Takim takim11 = new Takim("Gaziantep FK",11, ERenkler.CIFT_KIRMIZI, "Adil Kürükçü", "1969", takimDB);
+		Takim takim12 = new Takim("İstanbul Başakşehir",12, ERenkler.CIFT_KIRMIZI, "Göksel Gümüşdağ", "2014", takimDB);
+		Takim takim13 = new Takim("MKE Ankaragücü",13, ERenkler.SIYAH_KIRMIZI, "Fatih Mert", "1910", takimDB);
+		Takim takim14 = new Takim("Gençlerbirliği",14, ERenkler.KIRMIZI_SIYAH, "Murat Cavcav", "1923", takimDB);
+		Takim takim15 = new Takim("Kayserispor",15, ERenkler.KIRMIZI_SIYAH, "Berna Gözbaşı", "1966", takimDB);
+		Takim takim16 = new Takim("Yeni Malatyaspor",16, ERenkler.YESIL_SIYAH, "Adil Gevrek", "1986", takimDB);
+		Takim takim17 = new Takim("Göztepe",17, ERenkler.CIFT_KIRMIZI, "Mehmet Sepil", "1925", takimDB);
+		Takim takim18 = new Takim("Denizlispor",18, ERenkler.CIFT_KIRMIZI, "Ali İpek", "1966", takimDB);
+		Takim takim19 = new Takim("Bodrum FK",19, ERenkler.YESIL_BEYAZ, "Fikret Öztürk", "1931", takimDB);
+	
 		
 		
 		Lig turkiyeSuperLigi =
@@ -109,9 +110,6 @@ public class DataGenerator {
 	
 	public static void generateManajer(MenajerDB menajerDB) {
 		final String sifre = "12345678";
-		
-		//public Menajer(LocalDate dogumTarihi, String isim, String soyIsim,String sifre, int takimID, MenajerDB
-		// menajerDB) {
 		
 		Menajer manajer1 = new Menajer(LocalDate.of(1976, 6, 10), "Okan", "Buruk", sifre, 1, menajerDB);
 		Menajer manajer2 = new Menajer(LocalDate.of(1955, 12, 24), "Jorge", "Jesus", sifre, 2, menajerDB);
@@ -132,7 +130,28 @@ public class DataGenerator {
 		Menajer manajer17 = new Menajer(LocalDate.of(1970, 6, 1), "Tamer", "Tuna", sifre, 17, menajerDB);
 		Menajer manajer18 = new Menajer(LocalDate.of(1977, 2, 18), "Yücel", "İldiz", sifre, 18, menajerDB);
 		Menajer menajer19 = new Menajer(LocalDate.of(1974, 1, 21), "İsmet", "Taşdemir", sifre, 19, menajerDB);
+		
 	}
-	
+	public  static void  generateStadyum(StadyumDB stadyumDB){
+		Stadyum galatasarayStadyumu = new Stadyum("Türk Telekom Stadyumu", "İstanbul", 52460,stadyumDB);
+		Stadyum fenerbahceStadyumu = new Stadyum("Ülker Stadyumu", "İstanbul", 50609,stadyumDB);
+		Stadyum besiktasStadyumu = new Stadyum("Vodafone Park", "İstanbul", 41700,stadyumDB);
+		Stadyum trabzonsporStadyumu = new Stadyum("Şenol Güneş Stadyumu", "Trabzon", 41309,stadyumDB);
+		Stadyum basaksehirStadyumu = new Stadyum("Başakşehir Fatih Terim Stadyumu", "İstanbul", 17128,stadyumDB);
+		Stadyum alanyasporStadyumu = new Stadyum("Alanya Oba Stadyumu", "Alanya", 10700,stadyumDB);
+		Stadyum antalyasporStadyumu = new Stadyum("Antalya Stadyumu", "Antalya", 33500,stadyumDB);
+		Stadyum konyasporStadyumu = new Stadyum("Konya Büyükşehir Belediye Stadyumu", "Konya", 42500,stadyumDB);
+		Stadyum sivassporStadyumu = new Stadyum("Sivas 4 Eylül Stadyumu", "Sivas", 27400,stadyumDB);
+		Stadyum caykurRizesporStadyumu = new Stadyum("Çaykur Didi Stadyumu", "Rize", 15000,stadyumDB);
+		Stadyum gaziantepFKStadyumu = new Stadyum("Gaziantep Kalyon Stadyumu", "Gaziantep", 35000,stadyumDB);
+		Stadyum mkeAnkaragucuStadyumu = new Stadyum("Eryaman Stadyumu", "Ankara", 22200,stadyumDB);
+		Stadyum genclerbirligiStadyumu = new Stadyum("Eryaman Stadyumu", "Ankara", 22200,stadyumDB);
+		Stadyum kayserisporStadyumu = new Stadyum("Kadir Has Stadyumu", "Kayseri", 33000,stadyumDB);
+		Stadyum yeniMalatyasporStadyumu = new Stadyum("Malatya Stadyumu", "Malatya", 27200,stadyumDB);
+		Stadyum goztepeStadyumu = new Stadyum("Göztepe Gürsel Aksel Stadyumu", "İzmir", 20000,stadyumDB);
+		Stadyum denizlisporStadyumu = new Stadyum("Denizli Atatürk Stadyumu", "Denizli", 19300,stadyumDB);
+		Stadyum bodrumFKStadyumu = new Stadyum("Bodrum Belediyesi Stadyumu", "Bodrum", 5000,stadyumDB);
+		
+	}
 	
 }

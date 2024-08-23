@@ -1,14 +1,16 @@
 package alper.FutbolApp.entities;
 
-
 import alper.FutbolApp.Databases.MenajerDB;
+import alper.FutbolApp.entities.BaseEntity;
+import alper.FutbolApp.model.DatabaseModel;
 import alper.FutbolApp.utility.FileIOWriter;
+
 
 import java.time.LocalDate;
 
 public class Menajer extends BaseEntity {
-	static int manajerIDCount;
-	
+	static int manajerIDCount=0;
+	private  static DatabaseModel databaseModel=new DatabaseModel();
 	private String isim;
 	private String soyIsim;
 	private String sifre;
@@ -25,7 +27,7 @@ public class Menajer extends BaseEntity {
 		this.sifre=sifre;
 		this.id=++manajerIDCount;
 		menajerDB.save(this);
-		FileIOWriter.menajerleriDosyayaYazdir(menajerDB);
+		FileIOWriter.menajerleriDosyayaYazdir(databaseModel);
 		
 	}
 	
