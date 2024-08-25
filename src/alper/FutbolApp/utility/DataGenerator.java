@@ -8,41 +8,40 @@ import alper.FutbolApp.utility.enums.EKume;
 import alper.FutbolApp.utility.enums.EMevki;
 import alper.FutbolApp.utility.enums.ERenkler;
 
-import java.time.DayOfWeek;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class DataGenerator {
-	
+
 	public static void generateData(DatabaseModel databaseModel) {
 		generateManajer(databaseModel.menajerDB);
 		generateTakimlar(databaseModel.takimDB,databaseModel.ligDB);
 		rastgeleFutbolcuUret(databaseModel.futbolcuDB);
 		generateStadyum(databaseModel.stadyumDB);
 	}
-	
-	
+
+
 	private static final String[] ISIM =
 			{"Ahmet", "Mehmet", "Ali", "Anıl", "Hasan", "Murat", "Kemal", "İbrahim", "Oğuz", "Emre", "Serkan", "Barış"
 					, "Halil", "Berk", "Kaan", "Sinan", "Erdem", "Hakan", "Cihan", "Levent", "Rıza", "Volkan", "Arda",
 					"Sefa", "Fikret", "Can", "Orhan", "Eren", "Burak", "Selim", "Tolga", "Umut", "Uğur", "Özgür",
 					"Taner", "Kadir", "Cem", "Ege", "Bora", "Mert", "Vedat", "Deniz", "Tarık", "Yavuz", "Gökhan",
 					"Koray", "Enes", "Erkan", "Tuncay", "Fırat", "Tamer"};
-	
+
 	private static final String[] SOYISIM =
 			{"Özogli", "Kaya", "Demir", "Çelik", "Şahin", "Aydın", "Yıldız", "Arslan", "Doğan", "Güneş", "Öztürk",
 					"K" + "ıl", "ıç", "Kurt", "Koç", "Erdoğan", "Polat", "Avcı", "Aksoy", "Taş", "Ünal", "Durmaz",
 					"Erdem", "Bulut", "Çetin", "Korkmaz", "Keskin", "Tan", "Güler", "Baş", "Bozkurt", "Ergin",
 					"Özdemir", "Can", "Karaca", "Orhan", "Turan", "Kara", "Ay", "Tekin", "Aslan", "Kurtuluş", "Uzun",
 					"Çalışkan", "Y" + "ücel", "Dinç", "Boz", "Duman", "Şen", "Eken", "Işık", "Özer"};
-	
+
 	public static void rastgeleFutbolcuUret(FutbolcuDB futbolcuDB) {
 		Random random = new Random();
 		int takimID = 1;
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 11; j++) {
 				Futbolcu futbolcu = new Futbolcu(futbolcuDB);
 				switch (j) {
@@ -63,16 +62,17 @@ public class DataGenerator {
 				futbolcu.setSoyIsim(SOYISIM[random.nextInt(0, SOYISIM.length)]);
 				futbolcu.setBonservisBedeli(random.nextLong(100_000, 5_000_000));
 				futbolcu.setDogumTarihi(LocalDate.of(random.nextInt(1980, 2005), random.nextInt(1, 13),
-				                                     random.nextInt(1, 28)));
+						random.nextInt(1, 28)));
 				futbolcu.setTakimID(takimID);
 			}
 			takimID++;
 		}
-		
+
 	}
-	
+
 	// TODO menajeri enttiy olarak yap
 	public static void  generateTakimlar(TakimDB takimDB, LigDB ligDB) {
+
 		List<Takim> takimList=new ArrayList<>();
 		Takim takim1 = new Takim("Galatasaray",1, ERenkler.KIRMIZI_SARI, "Dursun Özbek", "1905", takimDB);
 		Takim takim2 = new Takim("Fenerbahçe",2, ERenkler.SARI_LACIVERT, "Ali Koç", "1907", takimDB);
@@ -93,24 +93,24 @@ public class DataGenerator {
 		Takim takim17 = new Takim("Göztepe",17, ERenkler.CIFT_KIRMIZI, "Mehmet Sepil", "1925", takimDB);
 		Takim takim18 = new Takim("Denizlispor",18, ERenkler.CIFT_KIRMIZI, "Ali İpek", "1966", takimDB);
 		Takim takim19 = new Takim("Bodrum FK",19, ERenkler.YESIL_BEYAZ, "Fikret Öztürk", "1931", takimDB);
-	
-		
-		
+
+
+
 		Lig turkiyeSuperLigi =
 				new Lig("Türkiye super lig", "sezon1", EKume.TRENDYOL_SUPER_LIG, EBolge.TURKIYE, ligDB,
-				        LocalDate.of(2024, 8, 20));
-		
+						LocalDate.of(2024, 8, 20));
+
 		turkiyeSuperLigi.getTakimIDList()
-		                .addAll(List.of(takim1.getId(), takim2.getId(), takim3.getId(), takim4.getId(), takim5.getId()
-				                , takim6.getId(), takim7.getId(), takim8.getId(), takim9.getId(), takim10.getId(),
-				                        takim11.getId(), takim12.getId(), takim13.getId(), takim14.getId(),
-				                        takim15.getId(), takim16.getId(), takim17.getId(), takim18.getId(),
-				                        takim19.getId()));
+				.addAll(List.of(takim1.getId(), takim2.getId(), takim3.getId(), takim4.getId(), takim5.getId()
+						, takim6.getId(), takim7.getId(), takim8.getId(), takim9.getId(), takim10.getId(),
+						takim11.getId(), takim12.getId(), takim13.getId(), takim14.getId(),
+						takim15.getId(), takim16.getId(), takim17.getId(), takim18.getId(),
+						takim19.getId()));
 	}
-	
+
 	public static void generateManajer(MenajerDB menajerDB) {
 		final String sifre = "12345678";
-		
+
 		Menajer manajer1 = new Menajer(LocalDate.of(1976, 6, 10), "Okan", "Buruk", sifre, 1, menajerDB);
 		Menajer manajer2 = new Menajer(LocalDate.of(1955, 12, 24), "Jorge", "Jesus", sifre, 2, menajerDB);
 		Menajer manajer3 = new Menajer(LocalDate.of(1967, 3, 24), "Şenol", "Güneş", sifre, 3, menajerDB);
@@ -130,7 +130,8 @@ public class DataGenerator {
 		Menajer manajer17 = new Menajer(LocalDate.of(1970, 6, 1), "Tamer", "Tuna", sifre, 17, menajerDB);
 		Menajer manajer18 = new Menajer(LocalDate.of(1977, 2, 18), "Yücel", "İldiz", sifre, 18, menajerDB);
 		Menajer menajer19 = new Menajer(LocalDate.of(1974, 1, 21), "İsmet", "Taşdemir", sifre, 19, menajerDB);
-		
+
+
 	}
 	public  static void  generateStadyum(StadyumDB stadyumDB){
 		Stadyum galatasarayStadyumu = new Stadyum("Türk Telekom Stadyumu", "İstanbul", 52460,stadyumDB);
@@ -151,7 +152,7 @@ public class DataGenerator {
 		Stadyum goztepeStadyumu = new Stadyum("Göztepe Gürsel Aksel Stadyumu", "İzmir", 20000,stadyumDB);
 		Stadyum denizlisporStadyumu = new Stadyum("Denizli Atatürk Stadyumu", "Denizli", 19300,stadyumDB);
 		Stadyum bodrumFKStadyumu = new Stadyum("Bodrum Belediyesi Stadyumu", "Bodrum", 5000,stadyumDB);
-		
+
 	}
-	
+
 }

@@ -8,19 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MusabakaDB extends DataBaseManager<Musabaka> {
-	
-	// atStartOfDay().toLocalDate()) alperen hocaya sor
-	
-	//tarihe göre müsabaka bulma
-	public List<Musabaka> tarihindekiMusabakalariBul(LocalDate date){
-		return veriListesi.stream()
-				.filter(musabaka -> musabaka.getMusabakaTarihi().equals(date))
-				.collect(Collectors.toList());
+
+	private static final MusabakaDB instance = new MusabakaDB();
+
+	private MusabakaDB() {
 	}
-	
-	// musabaka silme
-	public void musabakaIptalEt(int id){
-		veriListesi.removeIf(musabaka -> musabaka.getId()==id);
+
+	public static MusabakaDB getInstance() {
+		return instance;
 	}
-	
 }

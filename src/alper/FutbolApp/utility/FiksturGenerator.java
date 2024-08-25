@@ -12,7 +12,7 @@ public class FiksturGenerator {
 	private static Map<Integer, List<Musabaka>> fikstur = new HashMap<>();
 	private LocalDate sezonBaslangic;
 	
-	public FiksturGenerator(List<Integer> takimIDleri, LocalDate sezonBaslangic) {
+	public FiksturGenerator(List<Integer> takimIDleri, LocalDate sezonBaslangic, Map<Integer, String> takimIdToNameMap) {
 		this.takimIDleri = takimIDleri;
 		this.sezonBaslangic = sezonBaslangic;
 		this.gunler = Arrays.asList(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY, DayOfWeek.MONDAY);
@@ -90,7 +90,7 @@ public class FiksturGenerator {
 		}
 	}
 	
-	public void fiksturuYazdir() {
+	public void fiksturuYazdir(Map<Integer, String> takimIdToNameMap) {
 		int haftaNumarasi = 1;
 		for (List<Musabaka> musabakalar : fikstur.values()) {
 			System.out.println("Hafta " + haftaNumarasi++);
